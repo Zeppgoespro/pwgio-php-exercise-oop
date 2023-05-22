@@ -2,6 +2,8 @@
 
 declare(strict_types = 1);
 
+session_start();
+
 use App\App;
 use App\Config;
 use App\Router;
@@ -20,7 +22,8 @@ $router = new Router();
 
 $router
     ->get('/', [HomeController::class, 'index'])
-    ->get('/upload', [FileUploader::class, 'uploader']);
+    ->get('/upload', [FileUploader::class, 'uploader'])
+    ->post('/upload', [FileUploader::class, 'upload_file']);
 
 (new App(
     $router,

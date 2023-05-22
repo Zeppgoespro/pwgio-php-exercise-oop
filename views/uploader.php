@@ -8,9 +8,10 @@
 </head>
 <body>
 
-  <form action="" method="post">
+  <form action="/upload" method="post" id="upload_form" enctype="multipart/form-data">
 
-    <input type="file" name="uploader" accept="text/csv" multiple />
+    <input type="file" name="upload_file[]" accept="text/csv" multiple />
+    <input type="submit" value="Upload" name="upload_btn" form="upload_form" />
 
   </form>
 
