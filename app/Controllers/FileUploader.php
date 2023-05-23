@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\View;
+use App\FileImporter;
 
 class FileUploader
 {
@@ -13,7 +14,7 @@ class FileUploader
     return View::make('uploader');
   }
 
-  public function upload_file()
+  public function upload_file(): void
   {
     $file_count = count($_FILES['upload_file']['name']);
 
@@ -30,9 +31,11 @@ class FileUploader
 
         $file_name = $_FILES['upload_file']['name'][$i];
         $file_tmp_name = $_FILES['upload_file']['tmp_name'][$i];
-
         $file_path = STORAGE_PATH . '/' . $file_name;
+
         move_uploaded_file($file_tmp_name, $file_path);
+
+        (new FileImporter())->import($file_path);
 
       endfor;
 
