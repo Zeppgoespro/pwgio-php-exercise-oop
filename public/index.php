@@ -9,6 +9,7 @@ use App\Config;
 use App\Router;
 use App\Controllers\HomeController;
 use App\Controllers\FileUploader;
+use App\Controllers\TransactionController;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -23,7 +24,8 @@ $router = new Router();
 $router
     ->get('/', [HomeController::class, 'index'])
     ->get('/upload', [FileUploader::class, 'uploader'])
-    ->post('/upload', [FileUploader::class, 'upload_file']);
+    ->post('/upload', [FileUploader::class, 'upload_file'])
+    ->get('/transactions', [TransactionController::class, 'render']);
 
 (new App(
     $router,

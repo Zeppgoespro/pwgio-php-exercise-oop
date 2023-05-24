@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\View;
-use App\FileImporter;
+use App\FileHandler;
 
 class FileUploader
 {
@@ -35,7 +35,7 @@ class FileUploader
 
         move_uploaded_file($file_tmp_name, $file_path);
 
-        (new FileImporter())->import($file_path);
+        (new FileHandler())->import($file_path);
 
       endfor;
 
@@ -45,7 +45,7 @@ class FileUploader
         $_SESSION['msg'] = 'Files uploaded successfully';
       endif;
 
-      header('Location: /');
+      header('Location: /transactions');
       exit;
 
     endif;

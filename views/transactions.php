@@ -24,6 +24,7 @@
         </style>
     </head>
     <body>
+        <?php var_dump($table) ?>
         <table>
             <thead>
                 <tr>
