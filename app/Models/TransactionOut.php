@@ -8,10 +8,6 @@ use App\Model;
 
 class TransactionOut extends Model
 {
-  public function __construct()
-  {
-    parent::__construct();
-  }
 
   public function pull_from_table(): array
   {

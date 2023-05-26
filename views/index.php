@@ -17,5 +17,7 @@
             endif;
 
         ?>
+        <p style="font-size:14px;"><a href="/upload">UPLOAD</a> the csv-file</p>
+        <p>Go to the <a href="/transactions">Transaction Table</a></p>
     </body>
 </html>

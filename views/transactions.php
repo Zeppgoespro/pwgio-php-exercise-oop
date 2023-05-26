@@ -1,3 +1,6 @@
+<?php
+    use App\Controllers\TransactionController;
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,7 +27,7 @@
         </style>
     </head>
     <body>
-        <?php var_dump($table) ?>
+        <p style="font-size:14px;">Return to <a href="/">MAIN</a></p>
         <table>
             <thead>
                 <tr>
@@ -35,20 +38,34 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- TODO -->
+                <?=
+                    TransactionController::populate_rows($transactions);
+                ?>
             </tbody>
             <tfoot>
                 <tr>
                     <th colspan="3">Total Income:</th>
-                    <td><!-- TODO --></td>
+                    <td>
+                        <?=
+                            TransactionController::populate_income($transactions);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <th colspan="3">Total Expense:</th>
-                    <td><!-- TODO --></td>
+                    <td>
+                        <?=
+                            TransactionController::populate_expense($transactions);
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <th colspan="3">Net Total:</th>
-                    <td><!-- TODO --></td>
+                    <td>
+                        <?=
+                            TransactionController::populate_total($transactions);
+                        ?>
+                    </td>
                 </tr>
             </tfoot>
         </table>

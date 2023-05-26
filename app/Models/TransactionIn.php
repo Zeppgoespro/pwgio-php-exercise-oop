@@ -1,10 +1,11 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Models;
 
 use App\Model;
+use DateTime;
 
 class TransactionIn extends Model
 {
@@ -17,8 +18,8 @@ class TransactionIn extends Model
 
   protected function format_date(string $date): string
   {
-    $date = date('Y-m-d', strtotime($date));
-    return $date;
+      $date_time = new DateTime($date);
+      return $date_time->format('Y-m-d');
   }
 
   protected function format_check_number(string $check): ?int

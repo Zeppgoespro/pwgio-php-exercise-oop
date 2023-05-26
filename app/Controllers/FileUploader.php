@@ -20,7 +20,7 @@ class FileUploader
 
     if ($_FILES['upload_file']['name'][0] === ''):
 
-      $_SESSION['msg'] = 'There is no files uploaded';
+      $_SESSION['msg'] = 'There is no files uploaded!';
 
       header('Location: /');
       exit;
@@ -40,12 +40,12 @@ class FileUploader
       endfor;
 
       if ($file_count < 2):
-        $_SESSION['msg'] = 'File uploaded successfully';
+        $_SESSION['msg'] = 'File uploaded successfully!';
       else:
-        $_SESSION['msg'] = 'Files uploaded successfully';
+        $_SESSION['msg'] = 'Files uploaded successfully!';
       endif;
 
-      header('Location: /transactions');
+      header('Location: /');
       exit;
 
     endif;
