@@ -8,6 +8,8 @@
 </head>
 <body>
 
+  <p style="font-size:14px;">Return to <a href="/">MAIN</a></p>
+
   <form action="/upload" method="post" id="upload_form" enctype="multipart/form-data">
 
     <input type="file" name="upload_file[]" accept="text/csv" multiple />
