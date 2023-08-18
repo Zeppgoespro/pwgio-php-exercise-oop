@@ -1,6 +1,3 @@
-<?php
-    use App\Controllers\TransactionController;
-?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,9 +22,46 @@
                 text-align: right;
             }
         </style>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const clearButton = document.getElementById('clearButton');
+                const tableBody = document.getElementById('tableBody');
+                const totals = document.querySelectorAll('.total');
+
+                clearButton.addEventListener('click', function() {
+
+                    fetch('/transactions/clear', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success == 'deleted') {
+                            alert('Table cleared successfully!');
+                            tableBody.innerHTML = '';
+                            totals.forEach(total => {
+                                total.innerHTML = '$0.00';
+                            });
+                        } else if (data.success == 'empty') {
+                            alert('There is nothing to delete!');
+                        } else {
+                            alert('An error occurred while clearing the table!');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error is', error);
+                    });
+                });
+            });
+        </script>
     </head>
     <body>
         <p style="font-size:14px;">Return to <a href="/">MAIN</a></p>
+
+        <button type="button" id="clearButton" style="margin-bottom: 15px; font-weight: bold;">Clear the table</button>
+
         <table>
             <thead>
                 <tr>
@@ -37,33 +71,33 @@
                     <th>Amount</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="tableBody">
                 <?=
-                    TransactionController::populate_rows($transactions);
+                    \App\Controllers\TransactionController::populate_rows($transactions);
                 ?>
             </tbody>
             <tfoot>
                 <tr>
                     <th colspan="3">Total Income:</th>
-                    <td>
+                    <td class="total">
                         <?=
-                            TransactionController::populate_income($transactions);
+                            \App\Controllers\TransactionController::populate_totals($transactions, 'inc');
                         ?>
                     </td>
                 </tr>
                 <tr>
                     <th colspan="3">Total Expense:</th>
-                    <td>
+                    <td class="total">
                         <?=
-                            TransactionController::populate_expense($transactions);
+                            \App\Controllers\TransactionController::populate_totals($transactions, 'exp');
                         ?>
                     </td>
                 </tr>
                 <tr>
                     <th colspan="3">Net Total:</th>
-                    <td>
+                    <td class="total">
                         <?=
-                            TransactionController::populate_total($transactions);
+                            \App\Controllers\TransactionController::populate_totals($transactions, 'tot');
                         ?>
                     </td>
                 </tr>

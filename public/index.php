@@ -25,7 +25,8 @@ $router
     ->get('/', [HomeController::class, 'index'])
     ->get('/upload', [FileUploader::class, 'uploader'])
     ->post('/upload', [FileUploader::class, 'upload_file'])
-    ->get('/transactions', [TransactionController::class, 'render']);
+    ->get('/transactions', [TransactionController::class, 'render'])
+    ->post('/transactions/clear', [TransactionController::class, 'clear_transactions']);
 
 (new App(
     $router,

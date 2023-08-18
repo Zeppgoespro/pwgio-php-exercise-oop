@@ -11,7 +11,7 @@ services:
     volumes:
       - ../:/var/www
   nginx:
-    image: nginx:1.23-alpine
+    image: nginx:1.25-alpine
     container_name: pwgio-nginx
     restart: unless-stopped
     ports:
